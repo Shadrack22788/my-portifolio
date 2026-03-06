@@ -47,7 +47,6 @@ export const Projects = () => {
             <h3 className="text-xl font-semibold mb-2">{proj.title}</h3>
             <p className="text-gray-600 mb-4">{proj.description}</p>
 
-            {/* Tech badges */}
             <div className="flex flex-wrap gap-2 mb-4">
               {proj.tech.map((techItem, idx) => (
                 <span
