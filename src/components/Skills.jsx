@@ -1,66 +1,103 @@
-import React from "react";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGitAlt,
+  FaGithub,
+  FaNodeJs,
+  FaFigma
+} from "react-icons/fa";
 
-const skills = [
-  {
-    name: "HTML",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-  },
-  {
-    name: "CSS",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-  },
-  {
-    name: "JavaScript",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  },
-  {
-    name: "React",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  },
-  {
-    name: "Tailwind",
-    image: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-  },
-  {
-    name: "Node.js",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "Express",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-  },
-  {
-    name: "MongoDB",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  },
-  {
-    name: "Git",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  },
-  {
-    name: "GitHub",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-  },
-];
+import { SiTailwindcss, SiExpress, SiMongodb, SiVite } from "react-icons/si";
 
-const Skills = () => {
+export  const Skills = () => {
+  const skills = {
+    frontend: [
+      { name: "HTML", icon: <FaHtml5 className="text-orange-500" />, level: "90%" },
+      { name: "CSS", icon: <FaCss3Alt className="text-blue-500" />, level: "85%" },
+      { name: "JavaScript", icon: <FaJs className="text-yellow-400" />, level: "80%" },
+      { name: "React", icon: <FaReact className="text-cyan-400" />, level: "75%" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" />, level: "85%" },
+    ],
+
+    backend: [
+      { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, level: "70%" },
+      { name: "Express", icon: <SiExpress className="text-gray-700" />, level: "65%" },
+      { name: "MongoDB", icon: <SiMongodb className="text-green-600" />, level: "70%" },
+    ],
+
+    tools: [
+      { name: "Git", icon: <FaGitAlt className="text-red-500" />, level: "80%" },
+      { name: "GitHub", icon: <FaGithub className="text-black" />, level: "85%" },
+      { name: "Figma", icon: <FaFigma className="text-purple-500" />, level: "60%" },
+      { name: "Vite", icon: <SiVite className="text-purple-400" />, level: "75%" },
+    ],
+  };
+
+  const SkillCard = ({ skill }) => (
+    <div className="bg-white p-5 rounded-xl shadow hover:shadow-xl transition hover:scale-105">
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-3xl">{skill.icon}</span>
+        <h3 className="font-semibold">{skill.name}</h3>
+      </div>
+
+      <div className="w-full bg-gray-200 h-2 rounded">
+        <div
+          className="bg-blue-500 h-2 rounded"
+          style={{ width: skill.level }}
+        ></div>
+      </div>
+
+      <p className="text-sm text-gray-500 mt-1">{skill.level}</p>
+    </div>
+  );
+
   return (
-    <section className="py-16 bg-gray-100" id="skills">
-      <h2 className="text-3xl font-bold text-center mb-10">My Skills</h2>
+    <section id="skills" className="py-20 bg-gray-100 px-6">
+      <div className="max-w-6xl mx-auto">
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-        {skills.map((skill, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center bg-white p-6 rounded-xl shadow hover:scale-105 transition"
-          >
-            <img src={skill.image} alt={skill.name} className="w-16 h-16" />
-            <p className="mt-3 font-semibold">{skill.name}</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          My Skills
+        </h2>
+
+        <div className="mb-12">
+          <h3 className="text-2xl font-semibold mb-6 text-blue-600">
+            Frontend Development
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {skills.frontend.map((skill, index) => (
+              <SkillCard key={index} skill={skill} />
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="mb-12">
+          <h3 className="text-2xl font-semibold mb-6 text-green-600">
+            Backend Development
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {skills.backend.map((skill, index) => (
+              <SkillCard key={index} skill={skill} />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-2xl font-semibold mb-6 text-purple-600">
+            Tools & Platforms
+          </h3>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {skills.tools.map((skill, index) => (
+              <SkillCard key={index} skill={skill} />
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
 };
-
-export default Skills;

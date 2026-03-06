@@ -1,45 +1,83 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const Contact = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Thanks for reaching out, ${email}!`);
-    setEmail("");
-    setMessage("");
+
+    const mailtoLink = `mailto:tuyizeresh@gmail.com?subject=Portfolio Contact from ${form.name}&body=${form.message} (${form.email})`;
+
+    window.location.href = mailtoLink;
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-white">
+    <section id="contact" className="py-20 bg-gray-100 px-6">
+
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input 
+
+        <h2 className="text-3xl font-bold mb-8">
+          Contact Me
+        </h2>
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 rounded-xl shadow space-y-6"
+        >
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className="w-full border p-3 rounded"
+          />
+
+          <input
             type="email"
+            name="email"
             placeholder="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            value={form.email}
+            onChange={handleChange}
             required
+            className="w-full border p-3 rounded"
           />
-          <textarea 
+
+          <textarea
+            name="message"
             placeholder="Your Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="border border-gray-300 rounded-lg p-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            rows="5"
+            value={form.message}
+            onChange={handleChange}
             required
-          />
-          <button 
+            className="w-full border p-3 rounded"
+          ></textarea>
+
+          <button
             type="submit"
-            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 hover:text-green-600  hover:text-xl transition"
+            className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition"
           >
-            Send
+            Send Message
           </button>
+
         </form>
+
       </div>
+
     </section>
   );
 };
