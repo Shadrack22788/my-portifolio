@@ -34,7 +34,7 @@ export const Contact = () => {
           />
           <button 
             type="submit"
-            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition"
+            className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 hover:text-green-600  hover:text-xl transition"
           >
             Send
           </button>
